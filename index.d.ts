@@ -104,6 +104,6 @@ declare namespace Broadlink {
          * received from the device
          * @param listener - callback with binary data as parameter
          */
-        on(event: 'rawData', listener: (data: Buffer) => void): this;
+        on(event: 'rawData', listener: (err: number, data: Buffer) => void): this;
     }
 }

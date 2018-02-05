@@ -225,8 +225,6 @@ function device( host, mac, timeout=10){
         var command = response[0x26];
         var err = response[0x22] | (response[0x23] << 8);
 
-        if(err != 0) return;
-
         if(command == 0xe9){
             this.key = Buffer.alloc(0x10,0);
             payload.copy(this.key, 0, 0x04, 0x14);
@@ -568,7 +566,7 @@ device.prototype.rm = function(){
             case 4: //get from check_data
                 var data = Buffer.alloc(payload.length - 4,0);
                 payload.copy(data, 0, 4);
-                this.emit("rawData", data);
+                this.emit("rawData", err, data);
                 break;
             case 3:
                 break;
